@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Discover the story, values, and passion behind CoffeeBeans.">
+  <title>About Us | CoffeeBeans — Good Beans. Better Days.</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --espresso: #21150f;
+      --espresso-2: #302017;
+      --coffee: #70452f;
+      --caramel: #c48755;
+      --cream: #f8f4ed;
+      --paper: #fffdf9;
+      --ink: #241a15;
+      --muted: #6d625b;
+      --line: rgba(255,255,255,.13);
+      --shadow: 0 20px 55px rgba(37, 22, 13, .14);
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: "DM Sans", sans-serif;
+      color: var(--ink);
+      background: var(--paper);
+      line-height: 1.6;
+    }
+    a { color: inherit; text-decoration: none; }
+    button, input { font: inherit; }
+    .container { width: min(1160px, calc(100% - 48px)); margin-inline: auto; }
+    .site-header {
+      position: absolute; z-index: 10; inset: 0 0 auto;
+      color: #fff; border-bottom: 1px solid rgba(255,255,255,.12);
+      background: rgba(22, 14, 10, .36); backdrop-filter: blur(12px);
+    }
+    .nav { min-height: 78px; display: flex; align-items: center; justify-content: space-between; gap: 28px; }
+    .brand { display: inline-flex; align-items: center; gap: 11px; font-weight: 700; line-height: 1.05; }
+    .brand-mark {
+      display: grid; place-items: center; width: 40px; height: 40px;
+      border: 1px solid rgba(255,255,255,.65); border-radius: 50%;
+      font-size: 22px; transform: rotate(-25deg);
+    }
+    .brand-name { font-family: "Playfair Display", serif; font-size: 1.35rem; letter-spacing: -.5px; }
+    .brand small { display: block; margin-top: 4px; font-size: .64rem; font-weight: 400; letter-spacing: .7px; opacity: .8; }
+    .nav-links { display: flex; align-items: center; gap: 32px; list-style: none; }
+    .nav-links a { font-size: .9rem; color: rgba(255,255,255,.88); transition: color .2s; }
+    .nav-links a:hover, .nav-links a.active { color: #e9b17e; }
+    .nav-actions { display: flex; align-items: center; gap: 16px; }
+    .icon-link { display: grid; place-items: center; width: 36px; height: 36px; border-radius: 50%; border: 1px solid var(--line); }
+    .menu-toggle { display: none; color: #fff; background: transparent; border: 0; font-size: 1.65rem; cursor: pointer; }
+    .hero {
+      min-height: 680px; display: flex; align-items: center; color: white; position: relative;
+      background:
+        linear-gradient(90deg, rgba(20,13,9,.94) 0%, rgba(24,15,10,.82) 36%, rgba(24,15,10,.2) 75%, rgba(24,15,10,.18) 100%),
+        linear-gradient(0deg, rgba(20,13,9,.25), transparent 40%),
+        url("https://images.unsplash.com/photo-1445116572660-236099ec97a0?auto=format&fit=crop&w=2000&q=85") center 54% / cover;
+    }
+    .hero-content { padding-top: 90px; max-width: 610px; }
+    .eyebrow { color: var(--caramel); font-size: .78rem; font-weight: 700; text-transform: uppercase; letter-spacing: 3px; margin-bottom: 17px; }
+    h1, h2, h3 { font-family: "Playfair Display", Georgia, serif; line-height: 1.12; }
+    h1 { font-size: clamp(3.2rem, 6vw, 5.5rem); letter-spacing: -2.2px; margin-bottom: 22px; }
+    h1 span { color: #d99a64; display: block; }
+    .hero-copy { color: rgba(255,255,255,.79); max-width: 490px; font-size: 1.02rem; margin-bottom: 30px; }
+    .button-row { display: flex; flex-wrap: wrap; gap: 14px; }
+    .btn { display: inline-flex; align-items: center; justify-content: center; gap: 10px; padding: 13px 23px; border-radius: 9px; font-size: .9rem; font-weight: 700; border: 1px solid transparent; transition: transform .2s, background .2s; cursor: pointer; }
+    .btn:hover { transform: translateY(-2px); }
+    .btn-primary { color: #fff; background: var(--caramel); }
+    .btn-primary:hover { background: #ad7044; }
+    .btn-outline { border-color: rgba(255,255,255,.7); color: #fff; background: rgba(255,255,255,.04); }
+    .btn-outline:hover { background: rgba(255,255,255,.12); }
+    .scroll-note { display: flex; align-items: center; gap: 12px; margin-top: 58px; color: rgba(255,255,255,.6); font-size: .76rem; letter-spacing: 1.5px; text-transform: uppercase; }
+    .scroll-note::before { content: ""; height: 1px; width: 44px; background: var(--caramel); }
+    .benefits { background: var(--cream); padding: 34px 0; border-bottom: 1px solid #eee5da; }
+    .benefit-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 28px; }
+    .benefit { text-align: center; padding: 6px 12px; }
+    .benefit-icon { width: 52px; height: 52px; margin: 0 auto 12px; border-radius: 50%; display: grid; place-items: center; color: var(--coffee); background: #eee5d9; font-size: 1.45rem; }
+    .benefit h3 { font-family: "DM Sans", sans-serif; font-size: 1rem; margin-bottom: 5px; }
+    .benefit p { color: var(--muted); font-size: .85rem; max-width: 210px; margin: auto; }
+    .about { padding: 100px 0; background: var(--paper); }
+    .about-grid { display: grid; grid-template-columns: .85fr 1.15fr; gap: 76px; align-items: center; }
+    .about h2, .section-heading h2 { font-size: clamp(2.3rem, 4vw, 3.35rem); letter-spacing: -1.2px; margin-bottom: 20px; }
+    .about-copy { color: var(--muted); margin-bottom: 15px; }
+    .about .btn { margin-top: 13px; }
+    .about-image-wrap { position: relative; }
+    .about-image { display: block; width: 100%; height: 430px; object-fit: cover; border-radius: 16px; box-shadow: var(--shadow); }
+    .image-note { position: absolute; right: -18px; bottom: 24px; background: var(--espresso); color: #f4d0ac; padding: 17px 23px; border-radius: 10px; font-family: "Playfair Display", serif; font-size: 1.25rem; transform: rotate(-3deg); box-shadow: var(--shadow); }
+    .products { padding: 88px 0 100px; background: #f4eee5; }
+    .section-heading { text-align: center; max-width: 620px; margin: 0 auto 42px; }
+    .section-heading .eyebrow { margin-bottom: 12px; }
+    .section-heading p { color: var(--muted); }
+    .product-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+    .product-card { background: var(--paper); border-radius: 15px; overflow: hidden; box-shadow: 0 10px 30px rgba(42,27,18,.06); transition: transform .25s, box-shadow .25s; }
+    .product-card:hover { transform: translateY(-6px); box-shadow: var(--shadow); }
+    .product-card img { display: block; width: 100%; height: 240px; object-fit: cover; }
+    .product-info { padding: 22px; }
+    .product-tag { color: #9b643e; font-size: .7rem; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; }
+    .product-info h3 { font-size: 1.45rem; margin: 7px 0; }
+    .product-info p { color: var(--muted); font-size: .9rem; margin-bottom: 17px; }
+    .product-bottom { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+    .price { font-weight: 700; color: var(--coffee); }
+    .add-btn { border: 1px solid #d9c4b0; border-radius: 7px; padding: 8px 12px; background: transparent; color: var(--coffee); font-weight: 700; cursor: pointer; }
+    .add-btn:hover { background: var(--coffee); color: white; }
+    .quote-band { padding: 70px 24px; text-align: center; color: white; background: linear-gradient(rgba(31,19,12,.87), rgba(31,19,12,.87)), url("https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&w=1800&q=80") center / cover; }
+    .quote-band blockquote { font-family: "Playfair Display", serif; font-size: clamp(1.6rem, 3.5vw, 2.6rem); max-width: 820px; margin: 0 auto 14px; }
+    .quote-band p { color: #e0b18b; font-size: .8rem; letter-spacing: 2px; text-transform: uppercase; }
+    .newsletter { padding: 65px 0; background: #eadfd1; }
+    .newsletter-inner { display: flex; align-items: center; justify-content: space-between; gap: 35px; }
+    .newsletter h2 { font-size: 2rem; margin-bottom: 8px; }
+    .newsletter p { color: var(--muted); }
+    .newsletter-form { display: flex; width: min(100%, 470px); gap: 9px; }
+    .newsletter-form input { min-width: 0; flex: 1; border: 1px solid #d1beab; border-radius: 8px; background: rgba(255,255,255,.7); padding: 13px 15px; outline: none; }
+    .newsletter-form input:focus { border-color: var(--coffee); }
+    .form-message { font-size: .85rem; margin-top: 8px; color: var(--coffee); }
+    .site-footer { color: rgba(255,255,255,.78); background: var(--espresso); }
+    .footer-main { padding: 62px 0 45px; display: grid; grid-template-columns: 1.3fr .7fr .8fr; gap: 70px; }
+    .footer-brand { color: white; margin-bottom: 17px; }
+    .footer-about { max-width: 310px; font-size: .9rem; color: rgba(255,255,255,.58); margin-bottom: 20px; }
+    .socials { display: flex; gap: 10px; }
+    .socials a { display: grid; place-items: center; width: 34px; height: 34px; border: 1px solid var(--line); border-radius: 50%; font-size: .8rem; }
+    .socials a:hover { background: var(--caramel); color: white; }
+    .footer-column h3 { font-family: "DM Sans", sans-serif; font-size: .95rem; color: white; margin-bottom: 17px; }
+    .footer-column ul { list-style: none; display: grid; gap: 9px; }
+    .footer-column a { font-size: .87rem; color: rgba(255,255,255,.62); }
+    .footer-column a:hover { color: #e9b17e; }
+    .footer-bottom { border-top: 1px solid var(--line); padding: 19px 0; font-size: .78rem; color: rgba(255,255,255,.5); }
+    .footer-bottom .container { display: flex; justify-content: space-between; gap: 18px; flex-wrap: wrap; }
+    .footer-legal { display: flex; gap: 18px; }
+    @media (max-width: 900px) {
+      .nav-links { gap: 19px; }
+      .about-grid { gap: 42px; }
+      .footer-main { gap: 38px; }
+    }
+    @media (max-width: 720px) {
+      .container { width: min(100% - 36px, 560px); }
+      .nav { min-height: 70px; }
+      .menu-toggle { display: block; }
+      .nav-actions { margin-left: auto; }
+      .nav-links {
+        display: none; position: absolute; top: 70px; left: 0; right: 0; padding: 22px 28px;
+        background: #21150f; flex-direction: column; align-items: flex-start; gap: 18px;
+        border-top: 1px solid var(--line);
+      }
+      .nav-links.open { display: flex; }
+      .hero { min-height: 650px; background-position: 58% center; }
+      .hero-content { padding-top: 70px; }
+      h1 { font-size: clamp(3rem, 13vw, 4.4rem); }
+      .scroll-note { margin-top: 40px; }
+      .benefit-grid { grid-template-columns: repeat(2, 1fr); gap: 24px 12px; }
+      .about { padding: 72px 0; }
+      .about-grid { grid-template-columns: 1fr; gap: 35px; }
+      .about-image { height: 330px; }
+      .image-note { right: 10px; }
+      .product-grid { grid-template-columns: 1fr; max-width: 430px; margin: auto; }
+      .product-card img { height: 260px; }
+      .newsletter-inner { align-items: flex-start; flex-direction: column; }
+      .newsletter-form { width: 100%; }
+      .footer-main { grid-template-columns: 1fr 1fr; gap: 35px 24px; }
+      .footer-brand-column { grid-column: 1 / -1; }
+    }
+    @media (max-width: 420px) {
+      .container { width: calc(100% - 30px); }
+      .brand-name { font-size: 1.15rem; }
+      .brand-mark { width: 35px; height: 35px; }
+      .nav-actions { gap: 8px; }
+      .icon-link { width: 32px; height: 32px; }
+      .hero { min-height: 620px; }
+      .hero-copy { font-size: .94rem; }
+      .btn { padding: 12px 17px; }
+      .benefit-grid { gap: 20px 4px; }
+      .benefit { padding-inline: 3px; }
+      .benefit p { font-size: .8rem; }
+      .footer-main { grid-template-columns: 1fr 1fr; }
+      .newsletter-form { flex-direction: column; }
+      .newsletter-form .btn { width: 100%; }
+    }
+  
+    .about-hero {
+      min-height: 570px; display: flex; align-items: center; color: white;
+      background: linear-gradient(90deg, rgba(20,13,9,.94) 0%, rgba(24,15,10,.76) 48%, rgba(24,15,10,.25) 100%),
+      url("https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&w=2000&q=85") center / cover;
+    }
+    .about-hero .hero-content { padding-top: 110px; padding-bottom: 65px; max-width: 720px; }
+    .about-hero h1 { font-size: clamp(3rem, 6vw, 5rem); }
+    .about-intro { padding: 100px 0; background: var(--paper); }
+    .story-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 70px; align-items: center; }
+    .story-image-wrap { position: relative; }
+    .story-image { display: block; width: 100%; height: 450px; object-fit: cover; border-radius: 16px; box-shadow: var(--shadow); }
+    .story-copy { color: var(--muted); margin-bottom: 16px; }
+    .story-copy strong { color: var(--coffee); }
+    .values { padding: 85px 0 95px; background: #f4eee5; }
+    .values-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+    .value-card { background: var(--paper); border: 1px solid #eee2d5; border-radius: 15px; padding: 30px 25px; }
+    .value-icon { display: grid; place-items: center; width: 54px; height: 54px; border-radius: 50%; background: #eee5d9; color: var(--coffee); font-size: 1.5rem; margin-bottom: 18px; }
+    .value-card h3 { font-size: 1.45rem; margin-bottom: 12px; }
+    .value-card p { color: var(--muted); font-size: .92rem; }
+    .mission { padding: 85px 0; background: var(--paper); }
+    .mission-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+    .mission-card { padding: 36px; border-radius: 15px; background: var(--espresso); color: white; }
+    .mission-card h3 { color: #e9b17e; font-size: 1.7rem; margin-bottom: 14px; }
+    .mission-card p { color: rgba(255,255,255,.72); }
+    .about-cta { padding: 78px 24px; text-align: center; color: white; background: linear-gradient(rgba(31,19,12,.88), rgba(31,19,12,.88)), url("https://images.unsplash.com/photo-1445116572660-236099ec97a0?auto=format&fit=crop&w=1800&q=85") center / cover; }
+    .about-cta h2 { font-size: clamp(2rem, 4vw, 3rem); margin-bottom: 14px; }
+    .about-cta p { color: rgba(255,255,255,.75); margin-bottom: 24px; }
+    @media (max-width: 720px) {
+      .about-hero { min-height: 590px; background-position: 58% center; }
+      .about-hero .hero-content { padding-top: 100px; }
+      .story-grid, .mission-grid { grid-template-columns: 1fr; gap: 35px; }
+      .about-intro { padding: 72px 0; }
+      .story-image { height: 330px; }
+      .values-grid { grid-template-columns: 1fr; }
+    }
+
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <nav class="nav container" aria-label="Main navigation">
+      <a class="brand" href="index.html" aria-label="CoffeeBeans home">
+        <span class="brand-mark" aria-hidden="true">◉</span>
+        <span><span class="brand-name">CoffeeBeans</span><small>Good Beans. Better Days.</small></span>
+      </a>
+      <button class="menu-toggle" id="menuToggle" aria-label="Open navigation" aria-expanded="false">☰</button>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="index.html">Home</a></li>
+        <li><a class="active" href="about.html">About</a></li>
+        <li><a href="#">Our Coffee</a></li>
+        <li><a href="#">Our Story</a></li>
+        <li><a href="#">Contact</a></li>
+      </ul>
+      <div class="nav-actions">
+        <a class="icon-link" href="##" aria-label="Browse coffee">⌕</a>
+        <a class="icon-link" href="##" aria-label="Shopping bag">♡</a>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <section class="about-hero">
+      <div class="container">
+        <div class="hero-content">
+          <p class="eyebrow">The people behind the pour</p>
+          <h1>Our Passion<span>is Coffee.</span></h1>
+          <p class="hero-copy">Good coffee brings people together. At CoffeeBeans, every bean, every roast, and every cup is part of a simple idea: make everyday moments feel a little more special.</p>
+          <div class="button-row">
+            <a class="btn btn-primary" href="##">Discover Our Story <span aria-hidden="true">→</span></a>
+            <a class="btn btn-outline" href="##">Explore Our Coffee</a>
+          </div>
+          <div class="scroll-note">Good Beans. Better Days.</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="benefits" aria-label="What matters to CoffeeBeans">
+      <div class="container benefit-grid">
+        <article class="benefit">
+          <div class="benefit-icon" aria-hidden="true">❧</div>
+          <h3>Thoughtful Sourcing</h3>
+          <p>Beans selected with care and an eye for quality.</p>
+        </article>
+        <article class="benefit">
+          <div class="benefit-icon" aria-hidden="true">◎</div>
+          <h3>Quality First</h3>
+          <p>We value flavor, freshness, and consistency.</p>
+        </article>
+        <article class="benefit">
+          <div class="benefit-icon" aria-hidden="true">♨</div>
+          <h3>Made for Rituals</h3>
+          <p>Coffee that fits your morning and every pause.</p>
+        </article>
+        <article class="benefit">
+          <div class="benefit-icon" aria-hidden="true">♡</div>
+          <h3>Shared Moments</h3>
+          <p>Because the best cups often come with good company.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="about-intro" id="story">
+      <div class="container story-grid">
+        <div>
+          <p class="eyebrow">Our story</p>
+          <h2>Small Beans.<br>Big <span style="color:var(--caramel)">Moments.</span></h2>
+          <p class="story-copy">CoffeeBeans grew from a love of the little things: the aroma of freshly brewed coffee, the comfort of a familiar mug, and the conversations that happen around a table.</p>
+          <p class="story-copy">We believe coffee should feel welcoming and uncomplicated. That means paying attention to the beans, respecting the roasting process, and helping every cup deliver the warmth and character coffee lovers come back for.</p>
+          <p class="story-copy">From a quiet start to a busy day to a catch-up with friends, we want CoffeeBeans to be part of your everyday ritual.</p>
+          <a class="btn btn-primary" href="##">Find Your Favorite Roast <span aria-hidden="true">→</span></a>
+        </div>
+        <div class="story-image-wrap">
+          <img class="story-image" src="https://images.unsplash.com/photo-1559056199-641a0ac8b55e?auto=format&fit=crop&w=1200&q=85" alt="Coffee beans ready to be brewed">
+          <div class="image-note">Better Beans.<br>Better Days.</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="values">
+      <div class="container">
+        <div class="section-heading">
+          <p class="eyebrow">What we believe</p>
+          <h2>Good Coffee, Good Values.</h2>
+          <p>Our approach is simple: care about the details and make every coffee moment count.</p>
+        </div>
+        <div class="values-grid">
+          <article class="value-card">
+            <div class="value-icon" aria-hidden="true">☕</div>
+            <h3>Quality in Every Cup</h3>
+            <p>We celebrate carefully selected beans, considered roasting, and the distinctive flavors that make each coffee special.</p>
+          </article>
+          <article class="value-card">
+            <div class="value-icon" aria-hidden="true">🌿</div>
+            <h3>Respect the Bean</h3>
+            <p>From origin to brewing, every step matters. We aim to let the natural character of coffee shine through.</p>
+          </article>
+          <article class="value-card">
+            <div class="value-icon" aria-hidden="true">♡</div>
+            <h3>Warmth & Connection</h3>
+            <p>Coffee is more than a drink. It can create space to slow down, share stories, and enjoy time together.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="mission">
+      <div class="container">
+        <div class="section-heading">
+          <p class="eyebrow">Our purpose</p>
+          <h2>What Guides Us.</h2>
+          <p>A clear purpose for the coffee we share and the moments we help create.</p>
+        </div>
+        <div class="mission-grid">
+          <article class="mission-card">
+            <h3>Our Mission</h3>
+            <p>To make enjoyable, quality coffee part of everyday life through thoughtful beans, inviting flavors, and a welcoming experience.</p>
+          </article>
+          <article class="mission-card">
+            <h3>Our Vision</h3>
+            <p>To be a trusted favorite for coffee lovers who appreciate good flavor, simple rituals, and the little moments that make a day better.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="about-cta">
+      <p class="eyebrow">Your next coffee moment</p>
+      <h2>Make Room for Something Good.</h2>
+      <p>Explore our coffee and find a roast that feels right for you.</p>
+      <a class="btn btn-primary" href="##">Explore Our Coffee <span aria-hidden="true">→</span></a>
+    </section>
+  </main>
+
+  <footer class="site-footer" id="contact">
+    <div class="container footer-main">
+      <div class="footer-brand-column">
+        <a class="brand footer-brand" href="index.html">
+          <span class="brand-mark" aria-hidden="true">◉</span>
+          <span><span class="brand-name">CoffeeBeans</span><small>Good Beans. Better Days.</small></span>
+        </a>
+        <p class="footer-about">Thoughtful coffee for everyday moments. Find your roast, brew your way, and savor the little things.</p>
+        <div class="socials" aria-label="Social links">
+          <a href="#" aria-label="Instagram">ig</a>
+          <a href="#" aria-label="Facebook">f</a>
+          <a href="#" aria-label="Pinterest">p</a>
+        </div>
+      </div>
+      <div class="footer-column">
+        <h3>Explore</h3>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="##">Our Coffee</a></li>
+          <li><a href="##">Our Story</a></li>
+        </ul>
+      </div>
+      <div class="footer-column">
+        <h3>Say Hello</h3>
+        <ul>
+          <li><a href="mailto:hello@coffeebeans.example">hello@coffeebeans.example</a></li>
+          <li><a href="#">Customer Care</a></li>
+          <li><a href="#">FAQs</a></li>
+          <li><a href="#">Shipping Info</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="container">
+        <p>© <span id="year"></span> CoffeeBeans. Made for coffee moments.</p>
+        <div class="footer-legal"><a href="#">Privacy</a><a href="#">Terms</a></div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const menuToggle = document.getElementById("menuToggle");
+    const navLinks = document.getElementById("navLinks");
+
+    menuToggle.addEventListener("click", () => {
+      const isOpen = navLinks.classList.toggle("open");
+      menuToggle.setAttribute("aria-expanded", String(isOpen));
+      menuToggle.setAttribute("aria-label", isOpen ? "Close navigation" : "Open navigation");
+      menuToggle.textContent = isOpen ? "×" : "☰";
+    });
+
+    navLinks.querySelectorAll("a").forEach(link => {
+      link.addEventListener("click", () => {
+        navLinks.classList.remove("open");
+        menuToggle.setAttribute("aria-expanded", "false");
+        menuToggle.textContent = "☰";
+      });
+    });
+
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+</body>
+
+</html>
